@@ -3,9 +3,10 @@
 using namespace std;
 
 int main() {
-    cout << "Enter a number:  ";
-    double value;
-    cin >> value;
-    cout << value;
+    cout << "Enter values for 2 integers:  ";
+    int x, y;
+    cin >> x;
+    cin >> y;
+    cout << x + y;
     return 0;
 }
