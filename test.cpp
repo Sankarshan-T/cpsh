@@ -1,15 +1,13 @@
 #include <iostream>
 
-int main() {
-    // silly thing i found on the internet
-    int a = 1;
-    int b = 2;
-    int temp = a;
-    
-    a = b;
-    b = temp;
+using namespace std;
 
-    std::cout << a;
+int main() {
+    int number = 100;
+    number++;
+    int y = 600;
+
+    cout << "x = " << number << endl << y;
 
     return 0;
 }
