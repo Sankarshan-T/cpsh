@@ -3,11 +3,9 @@
 using namespace std;
 
 int main() {
-    int number = 100;
-    number++;
-    int y = 600;
-
-    cout << "x = " << number << endl << y;
-
+    cout << "Enter a number:  ";
+    double value;
+    cin >> value;
+    cout << value;
     return 0;
 }
