@@ -30,8 +30,26 @@ void coloredMessage(Color color, const string &message)
     setColor(Color::White);
 }
 
+void printBanner()
+{
+    coloredMessage(Color::Cyan, R"(
+            ╔█████ ╔██████ ╔█████ ╔██ ╔██
+            ║██    ║██  ██ ║██    ║██ ║██
+            ║██    ║██████ ║█████ ║██████
+            ║██    ║██     ╚═══██ ║██═╗██
+            ║█████ ║██     ╔█████ ║██ ║██
+            ╚════╝ ╚═╝     ╚════╝ ╚═╝ ╚═╝
+                  C++ Command Line
+    )");
+}
+
 int main()
 {
+    SetConsoleOutputCP(CP_UTF8);
+    SetConsoleCP(CP_UTF8);
+
+    printBanner();
+
     string input;
 
     while (true)
@@ -55,6 +73,7 @@ int main()
             coloredMessage(Color::Cyan, "All available commands:");
             cout << "   > help - to show this message\n";
             cout << "   > clear - to clear the terminal\n";
+            cout << "   > echo - to print something in the terminal\n";
             cout << "   > exit - to exit cpsh\n";
             continue;
         }
