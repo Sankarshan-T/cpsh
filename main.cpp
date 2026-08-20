@@ -2,6 +2,8 @@
 #include <string>
 #include <windows.h>
 
+#include "parser.h"
+
 using namespace std;
 
 enum class Color
@@ -30,23 +32,25 @@ void coloredMessage(Color color, const string &message)
 
 int main()
 {
-    string command;
+    string input;
 
     while (true)
     {
         cout << "cpsh$ ";
 
         setColor(Color::Yellow);
-        getline(cin, command);
+        getline(cin, input);
         setColor(Color::White);
 
-        if (command == "exit")
+        ParsedCommand parsed = parseCommand(input);
+
+        if (parsed.command == "exit")
         {
             coloredMessage(Color::Green, "Exiting cpsh...");
             break;
         }
 
-        if (command == "help")
+        if (parsed.command == "help")
         {
             coloredMessage(Color::Cyan, "All available commands:");
             cout << "   > help - to show this message\n";
@@ -55,10 +59,16 @@ int main()
             continue;
         }
 
-        if (command == "clear")
+        if (parsed.command == "clear")
         {
             coloredMessage(Color::Green, "Clearing...");
             system("cls");
+            continue;
+        }
+
+        if (parsed.command == "echo")
+        {
+            coloredMessage(Color::Cyan, parsed.arguments);
             continue;
         }
 
