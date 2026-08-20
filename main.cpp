@@ -21,7 +21,7 @@ void setColor(Color color)
         static_cast<int>(color));
 }
 
-void coloredMessage(Color color, string message)
+void coloredMessage(Color color, const string &message)
 {
     setColor(color);
     cout << message << "\n";
@@ -50,7 +50,7 @@ int main()
         {
             coloredMessage(Color::Cyan, "All available commands:");
             cout << "   > help - to show this message\n";
-            cout << "   > clear - to clear the teminal\n";
+            cout << "   > clear - to clear the terminal\n";
             cout << "   > exit - to exit cpsh\n";
             continue;
         }
