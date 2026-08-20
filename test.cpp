@@ -1,13 +1,15 @@
 #include <iostream>
 #include <cmath>
+#include <cstdlib>
+#include <ctime>
 
 using namespace std;
 
 int main() {
-    double input1, input2;
-    cout << "Enter 2 numbers: ";
-    cin >> input1 >> input2;
-    double result = pow(input1, input2);
-    cout << result;
+    long seconds = time(0);
+    srand(seconds);
+    int randomNo {rand() % 10};
+
+    cout << randomNo;
     return 0;
 }
