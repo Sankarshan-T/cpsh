@@ -1,20 +1,24 @@
 #include <iostream>
-#include <vector>
 #include <string>
-#include "inputParser.h"
-#include "execute.h"
 
 using namespace std;
 
-int main() {
-    while (true) {
-        cout << " $ ";
+int main()
+{
+    string command;
 
-        string input;
-        getline(cin, input);
+    while (true)
+    {
+        cout << "cpsh> ";
+        getline(cin, command);
 
-        vector<string> parsedInput = parser(input);
-        cout << executeCommand(parsedInput) << endl;
+        if (command == "exit")
+        {
+            cout << "Extiting....";
+            break;
+        }
+
+        cout << "Command: " << command << '\n';
     }
 
     return 0;
