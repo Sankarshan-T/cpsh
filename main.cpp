@@ -9,16 +9,32 @@ int main()
 
     while (true)
     {
-        cout << "cpsh> ";
+        cout << "cpsh$ ";
         getline(cin, command);
 
         if (command == "exit")
         {
-            cout << "Extiting....";
+            cout << "Extiting....\n"
+                 << "Exited!";
             break;
         }
 
-        cout << "Command: " << command << '\n';
+        if (command == "help")
+        {
+            cout << "All available commands:\n";
+            cout << "   > help - to show this message\n";
+            cout << "   > clear - to clear the teminal\n";
+            cout << "   > exit - to exit cpsh\n";
+            continue;
+        }
+
+        if (command == "clear")
+        {
+            system("cls");
+            continue;
+        }
+
+        cout << "Unknown Command: " << command << '\n';
     }
 
     return 0;
