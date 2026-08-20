@@ -21,33 +21,34 @@ void setColor(Color color)
         static_cast<int>(color));
 }
 
+void coloredMessage(Color color, string message)
+{
+    setColor(color);
+    cout << message << "\n";
+    setColor(Color::White);
+}
+
 int main()
 {
     string command;
 
     while (true)
     {
-        setColor(Color::White);
         cout << "cpsh$ ";
+
         setColor(Color::Yellow);
         getline(cin, command);
         setColor(Color::White);
 
         if (command == "exit")
         {
-            setColor(Color::Green);
-            cout << "Extiting....\n"
-                 << "Exited!";
-
-            setColor(Color::White);
+            coloredMessage(Color::Green, "Exiting cpsh...");
             break;
         }
 
         if (command == "help")
         {
-            setColor(Color::Cyan);
-            cout << "All available commands:\n";
-            setColor(Color::White);
+            coloredMessage(Color::Cyan, "All available commands:");
             cout << "   > help - to show this message\n";
             cout << "   > clear - to clear the teminal\n";
             cout << "   > exit - to exit cpsh\n";
@@ -56,15 +57,12 @@ int main()
 
         if (command == "clear")
         {
-            setColor(Color::Green);
-            cout << "Extiting....";
-            setColor(Color::White);
+            coloredMessage(Color::Green, "Clearing...");
             system("cls");
             continue;
         }
 
-        setColor(Color::Red);
-        cout << "Unknown Command: " << command << '\n';
+        coloredMessage(Color::Red, "Unknown command");
         setColor(Color::White);
     }
 
