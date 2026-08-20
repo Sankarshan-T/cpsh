@@ -16,7 +16,7 @@ ParsedCommand parseCommand(const string &input)
     else
     {
         result.command = input.substr(0, space);
-        result.arguments = input.substr(space++);
+        result.arguments = input.substr(space + 1);
     }
 
     return result;

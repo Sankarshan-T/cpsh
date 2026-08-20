@@ -30,6 +30,21 @@ void coloredMessage(Color color, const string &message)
     setColor(Color::White);
 }
 
+void printWorkingDirectory()
+{
+    char currentPath[MAX_PATH];
+
+    if (GetCurrentDirectoryA(MAX_PATH, currentPath))
+    {
+        cout << "Current Directory: ";
+        coloredMessage(Color::Green, currentPath);
+    }
+    else
+    {
+        coloredMessage(Color::Red, "Ooof! couldn't get current directory.");
+    }
+}
+
 void printBanner()
 {
     coloredMessage(Color::Cyan, R"(
@@ -47,6 +62,7 @@ int main()
 {
     SetConsoleOutputCP(CP_UTF8);
     SetConsoleCP(CP_UTF8);
+    system("cls");
 
     printBanner();
 
@@ -87,7 +103,18 @@ int main()
 
         if (parsed.command == "echo")
         {
+            if (parsed.arguments.empty())
+            {
+                coloredMessage(Color::Yellow, "echo command cannot be empty!, echo <message>");
+                continue;
+            }
             coloredMessage(Color::Cyan, parsed.arguments);
+            continue;
+        }
+
+        if (parsed.command == "pwd")
+        {
+            printWorkingDirectory();
             continue;
         }
 
