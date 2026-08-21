@@ -1,5 +1,6 @@
 #include <iostream>
 #include <filesystem>
+#include <sstream>
 #include <windows.h>
 
 #include "commands.h"
@@ -73,6 +74,57 @@ void listDirectory()
     }
 }
 
+void calculate(const string &expression)
+{
+    stringstream stream(expression);
+
+    double firstNumber;
+    double secondNumber;
+    char operation;
+
+    if (!(stream >> firstNumber >> operation >> secondNumber))
+    {
+        coloredMessage(
+            Color::Yellow,
+            "Wrong usage! Correct usage: calc <number> <operator> <number>");
+        return;
+    }
+
+    double result;
+
+    switch (operation)
+    {
+    case '+':
+        result = firstNumber + secondNumber;
+        break;
+
+    case '-':
+        result = firstNumber - secondNumber;
+        break;
+
+    case '*':
+        result = firstNumber * secondNumber;
+        break;
+
+    case '/':
+        if (secondNumber == 0)
+        {
+            coloredMessage(Color::Red, "Error: Cannot divide by zero.");
+            return;
+        }
+
+        result = firstNumber / secondNumber;
+        break;
+
+    default:
+        coloredMessage(Color::Yellow, "Unknown operator.");
+        return;
+    }
+
+    cout << "= ";
+    coloredMessage(Color::Green, to_string(result));
+}
+
 void printHelp()
 {
     coloredMessage(Color::Cyan, "CPSH commands:");
@@ -85,6 +137,7 @@ void printHelp()
     cout << "   > pwd - to print the current working directory\n";
     cout << "   > cd - to change the working directory in the terminal\n";
     cout << "   > ls - to list directories and files under the current dir\n";
+    cout << "   > calc - to perform operations with numbers\n";
     cout << "   > exit - to exit cpsh\n";
     cout << "\n";
 }

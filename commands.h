@@ -36,6 +36,9 @@ void printBanner();
 // void for the ls command thingi
 void listDirectory();
 
+//  the void for og calculator
+void calculate(const std::string &expression);
+
 // the goat to run all the above commands!!!!
 void executeCommands(
     const string &command,

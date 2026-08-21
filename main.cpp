@@ -57,6 +57,11 @@ int main()
             system("cls");
             continue;
         }
+        if (parsed.command == "calc")
+        {
+            calculate(parsed.arguments);
+            continue;
+        }
 
         if (parsed.command == "echo")
         {
