@@ -37,7 +37,10 @@ void printBanner();
 void listDirectory();
 
 //  the void for og calculator
-void calculate(const std::string &expression);
+void calculate(const string &expression);
+
+// void for the touch command
+void createFile(const string &filename);
 
 // the goat to run all the above commands!!!!
 void executeCommands(

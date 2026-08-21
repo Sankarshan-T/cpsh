@@ -1,6 +1,7 @@
 #include <iostream>
 #include <filesystem>
 #include <sstream>
+#include <fstream>
 #include <windows.h>
 
 #include "commands.h"
@@ -125,6 +126,37 @@ void calculate(const string &expression)
     coloredMessage(Color::Green, to_string(result));
 }
 
+void createFile(const string &filename)
+{
+    namespace fs = std::filesystem;
+
+    try
+    {
+        fs::path filepath = fs::current_path() / filename;
+
+        if (fs::exists(filepath))
+        {
+            coloredMessage(Color::Yellow, "File already exists lol.");
+            return;
+        }
+
+        ofstream file(filepath);
+
+        if (file)
+        {
+            coloredMessage(Color::Green, "File created!");
+        }
+        else
+        {
+            coloredMessage(Color::Red, "Could not create file.");
+        }
+    }
+    catch (const fs::filesystem_error &error)
+    {
+        coloredMessage(Color::Red, "Couldn't creating file.");
+    }
+}
+
 void printHelp()
 {
     coloredMessage(Color::Cyan, "CPSH commands:");
@@ -137,6 +169,7 @@ void printHelp()
     cout << "   > pwd - to print the current working directory\n";
     cout << "   > cd - to change the working directory in the terminal\n";
     cout << "   > ls - to list directories and files under the current dir\n";
+    cout << "   > touch - to create a file in the current directory\n";
     cout << "   > calc - to perform operations with numbers\n";
     cout << "   > exit - to exit cpsh\n";
     cout << "\n";

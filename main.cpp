@@ -90,6 +90,18 @@ int main()
             changeDirectory(parsed.arguments);
             continue;
         }
+
+        if (parsed.command == "touch")
+        {
+            if (parsed.arguments.empty())
+            {
+                coloredMessage(Color::Yellow, "touch command cannot be empty!, enter a file name, touch <file_name>");
+                continue;
+            }
+            createFile(parsed.arguments);
+            continue;
+        }
+
         if (parsed.command == "history")
         {
             if (commandHistory.empty())
