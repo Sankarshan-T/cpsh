@@ -21,7 +21,7 @@ A cool shell application built in C++ by me for windows. This is my first ever p
 
 ## How to install:
 - Go to the releases page here, and download the latest exe file.
-- Run the exe file normally, and CPSH opens in your teminal.
+- Run the exe file normally, and CPSH opens in your terminal.
 - Read the commands and try them out!
 
 ## Runnning locally:
