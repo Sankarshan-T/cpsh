@@ -20,13 +20,14 @@ A cool shell application built in C++ by me for windows. This is my first ever p
 - **exit**: To exit the application
 
 ## How to install:
-- Go to the releases page here, and download the latest exe file.
+- Go to the releases page here, and download the latest 'Release.zip' file file.
+- Extract the zip file,
 - Run the exe file normally, and CPSH opens in your terminal.
 - Read the commands and try them out!
 
 ## Runnning locally:
 - Clone this repository: <br/> `git clone https://github.com/Sankarshan-T/cpsh`
-- Compile all files using: <br/> `g++ main.cpp parser.cpp commands.cpp -o my-cpsh.exe`
+- Compile all files using: <br/> `g++ main.cpp parser.cpp commands.cpp -o my-cpsh.exe` (Also needs cpp compiler installed)
 - Then run it with `my-cpsh.exe`(for command prompt) or `./my-cpsh.exe` (for powershell)
 
 ## Made completely using C++
