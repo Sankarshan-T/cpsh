@@ -42,6 +42,12 @@ void calculate(const string &expression);
 // void for the touch command
 void createFile(const string &filename);
 
+// for the cat command
+void readFile(const std::string &filename);
+
+// for rm rf stuff
+void removeFile(const std::string &filename);
+
 // the goat to run all the above commands!!!!
 void executeCommands(
     const string &command,

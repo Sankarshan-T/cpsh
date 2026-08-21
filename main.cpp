@@ -74,6 +74,30 @@ int main()
             continue;
         }
 
+        if (parsed.command == "cat")
+        {
+            if (parsed.arguments.empty())
+            {
+                coloredMessage(Color::Yellow, "cat command cannot be empty, please enter a filename, usage: cat <file_name>");
+                continue;
+            }
+
+            readFile(parsed.arguments);
+            continue;
+        }
+
+        if (parsed.command == "rf")
+        {
+            if (parsed.arguments.empty())
+            {
+                coloredMessage(Color::Yellow, "rf cannot be empty! Usage: rf <filename>");
+                continue;
+            }
+
+            removeFile(parsed.arguments);
+            continue;
+        }
+
         if (parsed.command == "pwd")
         {
             printWorkingDirectory();

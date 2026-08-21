@@ -128,7 +128,7 @@ void calculate(const string &expression)
 
 void createFile(const string &filename)
 {
-    namespace fs = std::filesystem;
+    namespace fs = filesystem;
 
     try
     {
@@ -157,6 +157,59 @@ void createFile(const string &filename)
     }
 }
 
+void readFile(const std::string &filename)
+{
+    ifstream file(filename);
+
+    if (!file)
+    {
+        coloredMessage(Color::Red, "Couldnt open file");
+        return;
+    }
+    string line;
+
+    while (getline(file, line))
+    {
+        cout << line << "\n";
+    }
+}
+
+void removeFile(const std::string &filename)
+{
+    namespace fs = filesystem;
+
+    try
+    {
+        fs::path filepath = fs::current_path() / filename;
+
+        if (!fs::exists(filepath))
+        {
+            coloredMessage(Color::Red, "File not found.");
+            return;
+        }
+        if (fs::is_directory(filepath))
+        {
+            coloredMessage(
+                Color::Yellow,
+                "That is a directory..... remove only deletes files.");
+            return;
+        }
+
+        if (fs::remove(filepath))
+        {
+            coloredMessage(Color::Green, "File removed!");
+        }
+        else
+        {
+            coloredMessage(Color::Red, "Could not remove file.");
+        }
+    }
+    catch (const fs::filesystem_error &error)
+    {
+        coloredMessage(Color::Red, "Error occured while removing the file....");
+    }
+}
+
 void printHelp()
 {
     coloredMessage(Color::Cyan, "CPSH commands:");
@@ -170,7 +223,9 @@ void printHelp()
     cout << "   > cd - to change the working directory in the terminal\n";
     cout << "   > ls - to list directories and files under the current dir\n";
     cout << "   > touch - to create a file in the current directory\n";
+    cout << "   > cat - to read the contents of a file\n";
     cout << "   > calc - to perform operations with numbers\n";
+    cout << "   > rf - to remove a file from the working directory\n";
     cout << "   > exit - to exit cpsh\n";
     cout << "\n";
 }
