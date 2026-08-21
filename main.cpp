@@ -97,6 +97,11 @@ int main()
             }
             continue;
         }
+        if (parsed.command == "ls")
+        {
+            listDirectory();
+            continue;
+        }
 
         coloredMessage(Color::Red, "Unknown command");
         setColor(Color::White);

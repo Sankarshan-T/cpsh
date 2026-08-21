@@ -1,4 +1,5 @@
 #include <iostream>
+#include <filesystem>
 #include <windows.h>
 
 #include "commands.h"
@@ -46,6 +47,32 @@ void changeDirectory(const string &path)
     }
 }
 
+void listDirectory()
+{
+    namespace fs = filesystem;
+
+    try
+    {
+        for (const auto &entry : fs::directory_iterator(fs::current_path()))
+        {
+            if (entry.is_directory())
+            {
+                setColor(Color::Cyan);
+                cout << "DIR>  " << entry.path().filename().string() << "\n";
+            }
+            else
+            {
+                setColor(Color::White);
+                cout << "FILE> " << entry.path().filename().string() << "\n";
+            }
+        }
+    }
+    catch (const fs::filesystem_error &error)
+    {
+        coloredMessage(Color::Red, "Error: Could not list directory.");
+    }
+}
+
 void printHelp()
 {
     coloredMessage(Color::Cyan, "CPSH commands:");
@@ -57,6 +84,7 @@ void printHelp()
     cout << "   > history - to print previously used commands\n";
     cout << "   > pwd - to print the current working directory\n";
     cout << "   > cd - to change the working directory in the terminal\n";
+    cout << "   > ls - to list directories and files under the current dir\n";
     cout << "   > exit - to exit cpsh\n";
     cout << "\n";
 }
